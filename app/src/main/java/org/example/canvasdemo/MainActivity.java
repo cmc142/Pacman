@@ -7,28 +7,88 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MainActivity extends Activity {
-	
+
 	MyView myView;
+	int points = 0;
+
+
+
+	public void setRunning(boolean running) {
+		this.running = running;
+	}
+
+	private boolean running = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		Button button = (Button) findViewById(R.id.moveButton);
-		myView = (MyView) findViewById(R.id.gameView);
+		Button buttonleft = (Button) findViewById(R.id.moveleftButton);
+		Button buttonup = (Button) findViewById(R.id.moveupButton);
+		Button buttondown = (Button) findViewById(R.id.movedownButton);
+		myView = (MyView) findViewById(R.id.myView);
+		 TextView textView1 = (TextView) findViewById(R.id.timer);
+
+
 		//listener of our pacman
 		button.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				myView.moveRight(10);
+				myView.moveUp(10);
+				myView.moveDown(10);
+				myView.moveRight(10);
+
+
+				if (v.getId() == R.id.startButton) {
+					running = true;
+				} else if (v.getId() == R.id.stopButton) {
+					running = false;
+				} else if (v.getId() == R.id.resetButton) {
+
+					myView.refreshDrawableState();
+
+				}
 			}
 		});
-		
-		
+
+
+		buttonleft.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				myView.moveLeft(10);
+			}
+		});
+
+
+		buttonup.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				myView.moveUp(10);
+			}
+		});
+
+
+		buttondown.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				myView.moveDown(10);
+			}
+		});
+
+
+
 	}
+
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -48,4 +108,19 @@ public class MainActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+
+
+
+	public void updatepoint(GoldCoin goldCoin){
+
+		TextView textView2 = (TextView) findViewById(R.id.points);
+		if(goldCoin.getTakken())
+		{
+			textView2.setText(points + 1);
+		}
+	}
+
+
 }
+
+

@@ -2,25 +2,85 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\makn\AndroidStudioProjects\course2016\CanvasDemo\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="C:\Users\makn\AndroidStudioProjects\course2016\CanvasDemo\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-21.0.3_a8bd4df0864760fbfdd6760ad143feab0c49ea07.jar" />
+        is-multidex="true"
+        jar="C:\Users\user\.android\build-cache\e3311905168d08d2c50cb20ac0a441ad9da593a4\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="8fe8a8f77d651982ce5e18f6187dc4daf914ac57">
+        <dex dex="C:\Users\user\AndroidStudioProjects\CanvasDemo\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_d3ecc17696df50be6eed9ad99a23696e0fc3c73c\classes.dex" />
     </item>
     <item
-        jar="C:\Users\makn\AndroidStudioProjects\course2016\CanvasDemo\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\jars\libs\internal_impl-21.0.3.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="C:\Users\makn\AndroidStudioProjects\course2016\CanvasDemo\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3_ce84e93074138e891b54c60e0d84d68eea9f8a96.jar" />
+        is-multidex="true"
+        jar="C:\Users\user\.android\build-cache\e6bee9497b6518354585709e2c8d4ccce80b3701\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="67eb33110dbacb46a48175b08ae0c96761d2c17d">
+        <dex dex="C:\Users\user\AndroidStudioProjects\CanvasDemo\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_01d1d8ba5c358d03ae256d1933deea19cd44a026\classes.dex" />
     </item>
     <item
-        jar="C:\Users\makn\android-sdks\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="C:\Users\makn\AndroidStudioProjects\course2016\CanvasDemo\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3_85a0919a9258501ff68494a7b220aee942b01292.jar" />
+        is-multidex="true"
+        jar="C:\Users\user\.android\build-cache\d71c049cc90dc1942d018f96e9b357acb2626378\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="ee394a892dd21c03a528139c1e8d4e0e1264ac84">
+        <dex dex="C:\Users\user\AndroidStudioProjects\CanvasDemo\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_0410873958f54d5c8e39d4c530bfcbc51342e421\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\user\AndroidStudioProjects\CanvasDemo\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
+        <dex dex="C:\Users\user\AndroidStudioProjects\CanvasDemo\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_bf7924b3c67fa72f1ae455416ba660553657a1f8\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\user\.android\build-cache\61c71b04b38d6a706efc2665949184269a6c1c4c\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\user\AndroidStudioProjects\CanvasDemo\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_33a65410070c5eebfe466a79de9e00cce17f6fe5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\user\.android\build-cache\d8ca95dff64bae558af09270667f35e19076ea20\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e820b7be8c035dd522da4bc822e8a76c8e27921a">
+        <dex dex="C:\Users\user\AndroidStudioProjects\CanvasDemo\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_ae812fd0bd8b1ebf4d31fbd87bab1d87d828a120\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\user\AndroidStudioProjects\CanvasDemo\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="4870ae831f1c3b475f8d8371402232e92099a534">
+        <dex dex="C:\Users\user\AndroidStudioProjects\CanvasDemo\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_8f0254d9d8e7dbed90d371c784040e5dbcd1f262\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\user\.android\build-cache\3ad43bdbacec42e69ae39a118c2ea865e73aecdb\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="fa0446a14ed5dd3725047d6399ffea771a564b30">
+        <dex dex="C:\Users\user\AndroidStudioProjects\CanvasDemo\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_3e890180665a55219216a1d8d3fab65e6eed45fc\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\user\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.2.0\support-annotations-25.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="4a5a82a027706397fff621b22fd6fa796e91d7c5">
+        <dex dex="C:\Users\user\AndroidStudioProjects\CanvasDemo\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-25.2.0_fda9f7582bbc7bcf64555d39f4e2c08cb8a5211f\classes.dex" />
     </item>
 
 </items>
