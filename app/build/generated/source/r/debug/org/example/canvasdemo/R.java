@@ -27,8 +27,8 @@ public final class R {
         public static final int moveleftButton=0x7f080004;
         public static final int moveupButton=0x7f080005;
         public static final int myView=0x7f080009;
+        public static final int pauseButton=0x7f080002;
         public static final int points=0x7f080007;
-        public static final int resetButton=0x7f080002;
         public static final int startButton=0x7f080000;
         public static final int stopButton=0x7f080001;
         public static final int timer=0x7f080008;

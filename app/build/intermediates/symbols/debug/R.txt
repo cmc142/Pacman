@@ -10,8 +10,8 @@ int id movedownButton 0x7f080006
 int id moveleftButton 0x7f080004
 int id moveupButton 0x7f080005
 int id myView 0x7f080009
+int id pauseButton 0x7f080002
 int id points 0x7f080007
-int id resetButton 0x7f080002
 int id startButton 0x7f080000
 int id stopButton 0x7f080001
 int id timer 0x7f080008

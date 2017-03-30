@@ -1,5 +1,6 @@
 package org.example.canvasdemo;
 
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,6 +10,9 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Timer;
+
+
 public class MainActivity extends Activity {
 
 	MyView myView;
@@ -16,12 +20,10 @@ public class MainActivity extends Activity {
 	int ti = 0;
 
 
+	private Timer gameTimer;
+	private Timer pacmanTimer;
+	private Timer ghostTimer;
 
-	public void setRunning(boolean running) {
-		this.running = running;
-	}
-
-	private boolean running = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,8 @@ public class MainActivity extends Activity {
 		final Button buttonup = (Button) findViewById(R.id.moveupButton);
 		final Button buttondown = (Button) findViewById(R.id.movedownButton);
 		final Button buttonstartspil = (Button) findViewById(R.id.startButton);
+		final Button buttonstopspil = (Button) findViewById(R.id.stopButton);
+		final Button buttonpausespil = (Button) findViewById(R.id.pauseButton);
 		myView = (MyView) findViewById(R.id.myView);
 
 		myView.setActivity(this);
@@ -58,21 +62,44 @@ public class MainActivity extends Activity {
 				}
 			}
 		})
+
+
 */
+
+				buttonstartspil.setOnClickListener(new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						myView.reset();
+
+					}
+				});
+
+
+				buttonstopspil.setOnClickListener(new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						gameTimer.cancel();
+						pacmanTimer.cancel();
+						ghostTimer.cancel();
+					}
+				});
+
+				buttonpausespil.setOnClickListener(new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						myView.reset();
+					}
+				});
+
 
 				buttonleft.setOnClickListener(new OnClickListener() {
 
 					@Override
 					public void onClick(View v) {
 						myView.moveLeft(10);
-					}
-				});
-
-				buttonstartspil.setOnClickListener(new OnClickListener() {
-
-					@Override
-					public void onClick(View v) {
-						myView.newGame = true;
 					}
 				});
 

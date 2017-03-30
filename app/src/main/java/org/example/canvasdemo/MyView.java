@@ -89,13 +89,21 @@ public class MyView extends View {
     }
 
 
-
+    public void reset()
+    {
+        int pacx = 50;
+        int pacy = 400;
+        newGame = true;
+        invalidate();
+    }
 
 
     //In the onDraw we put all our code that should be
     //drawn whenever we update the screen.
     @Override
     protected void onDraw(Canvas canvas) {
+
+
 
 
         //Here we get the height and weight
