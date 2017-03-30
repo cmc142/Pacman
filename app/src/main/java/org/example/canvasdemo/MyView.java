@@ -19,6 +19,7 @@ import java.util.Random;
 public class MyView extends View {
 
     ArrayList<GoldCoin> coins = new ArrayList<GoldCoin>();
+    ArrayList<Ghost> ghostst = new ArrayList<Ghost>();
     MainActivity activity;
 
     public void setActivity(MainActivity activity) {
@@ -89,7 +90,110 @@ public class MyView extends View {
 
 
 
-    public void ghost(Ghost gost){
+
+
+    //In the onDraw we put all our code that should be
+    //drawn whenever we update the screen.
+    @Override
+    protected void onDraw(Canvas canvas) {
+
+
+        //Here we get the height and weight
+        h = canvas.getHeight();
+        w = canvas.getWidth();
+        System.out.println("h = " + h + ", w = " + w);
+        //Making a new paint object
+        Paint paint = new Paint();
+        //setting the color
+        paint.setColor(Color.RED);
+        canvas.drawColor(Color.WHITE); //clear entire canvas to white color
+
+
+        canvas.drawBitmap(bitmap, pacx, pacy, paint);
+
+        if (newGame) {
+            newGame = false;
+            Random rand = new Random(System.currentTimeMillis());
+            coins = new ArrayList<>();
+            ghostst = new ArrayList<>();
+            for (int i = 1; i <= 10; i++) {
+                int coinx = rand.nextInt(w - 52);
+                int coiny = rand.nextInt(h - 51);
+                GoldCoin newCoin = new GoldCoin(coinx, coiny);
+                coins.add(newCoin);
+
+            }
+
+            for (int a = 1; a <= 2; a++) {
+                int gosx = rand.nextInt(w - 52);
+                int gosy = rand.nextInt(h - 51);
+                Ghost newGost = new Ghost(gosx, gosy);
+                ghostst.add(newGost);
+
+            }
+
+
+
+
+
+        } //end of newgame
+
+
+        for (Ghost gost : ghostst) {
+
+            ghostinfo(gost);
+
+            // if (level > 0) {
+            if (!gost.getdead()) {
+                canvas.drawBitmap(ghost, gost.getX(), gost.getY(), paint);
+            }
+            // }
+        }
+
+            for (GoldCoin goldCoin : coins) {
+
+            goldtakken(goldCoin);
+
+
+            if (!goldCoin.getTakken()) {
+                canvas.drawBitmap(coin, goldCoin.getX(), goldCoin.getY(), paint);
+            }
+
+
+        }
+
+
+
+
+            super.onDraw(canvas);
+
+
+    }
+
+    public void goldtakken(GoldCoin goldCoins) {
+
+        double res = Math.sqrt((pacx - goldCoins.getX()) * (pacx - goldCoins.getX()) + (pacy - goldCoins.getY()) * (pacy - goldCoins.getY()));
+
+
+        if (res < 60) {
+
+            if (goldCoins.getTakken() == false) {
+                activity.updatepoint(goldCoins);
+            }
+            goldCoins.setTakken(true);
+
+            if(level > 1){
+
+                newGame = true;
+
+            }
+
+
+        }
+
+    }
+
+    public void ghostinfo(Ghost gost){
 
         Random ghostran = new Random(System.currentTimeMillis());
 
@@ -128,7 +232,7 @@ public class MyView extends View {
 
             if (res < 60) {
 
-                if (gost.getdead() == true) {
+                if (gost.getdead() == false) {
                     activity.hitgohst(gost);
                 }
                 gost.setdead(true);
@@ -138,95 +242,6 @@ public class MyView extends View {
         }
 
     }
-
-
-
-    //In the onDraw we put all our code that should be
-    //drawn whenever we update the screen.
-    @Override
-    protected void onDraw(Canvas canvas) {
-
-
-        //Here we get the height and weight
-        h = canvas.getHeight();
-        w = canvas.getWidth();
-        System.out.println("h = " + h + ", w = " + w);
-        //Making a new paint object
-        Paint paint = new Paint();
-        //setting the color
-        paint.setColor(Color.RED);
-        canvas.drawColor(Color.WHITE); //clear entire canvas to white color
-
-
-        canvas.drawBitmap(bitmap, pacx, pacy, paint);
-
-        if (newGame) {
-            newGame = false;
-            Random rand = new Random(System.currentTimeMillis());
-            coins = new ArrayList<>();
-            for (int i = 1; i <= 10; i++) {
-                int coinx = rand.nextInt(w - 52);
-                int coiny = rand.nextInt(h - 51);
-                GoldCoin newCoin = new GoldCoin(coinx, coiny);
-                coins.add(newCoin);
-
-
-            }
-
-
-        } //end of newgame
-
-
-
-
-
-
-        for (GoldCoin goldCoin : coins) {
-
-            goldtakken(goldCoin);
-
-
-            if (!goldCoin.getTakken()) {
-                canvas.drawBitmap(coin, goldCoin.getX(), goldCoin.getY(), paint);
-            }
-
-
-        }
-        if(level > 0) {
-
-
-
-
-            }
-
-
-        super.onDraw(canvas);
-    }
-
-    public void goldtakken(GoldCoin goldCoins) {
-
-        double res = Math.sqrt((pacx - goldCoins.getX()) * (pacx - goldCoins.getX()) + (pacy - goldCoins.getY()) * (pacy - goldCoins.getY()));
-
-
-        if (res < 60) {
-
-            if (goldCoins.getTakken() == false) {
-                activity.updatepoint(goldCoins);
-            }
-            goldCoins.setTakken(true);
-
-
-            if (level > 1) {
-
-
-            }
-
-            newGame = true;
-
-        }
-
-    }
-
 
 
 

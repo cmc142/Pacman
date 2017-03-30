@@ -13,6 +13,7 @@ public class MainActivity extends Activity {
 
 	MyView myView;
 	int po = 0;
+	int ti = 0;
 
 
 
@@ -26,12 +27,13 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		Button button = (Button) findViewById(R.id.moveButton);
-		Button buttonleft = (Button) findViewById(R.id.moveleftButton);
-		Button buttonup = (Button) findViewById(R.id.moveupButton);
-		Button buttondown = (Button) findViewById(R.id.movedownButton);
+		final Button button = (Button) findViewById(R.id.moveButton);
+		final Button buttonleft = (Button) findViewById(R.id.moveleftButton);
+		final Button buttonup = (Button) findViewById(R.id.moveupButton);
+		final Button buttondown = (Button) findViewById(R.id.movedownButton);
+		final Button buttonstartspil = (Button) findViewById(R.id.startButton);
 		myView = (MyView) findViewById(R.id.myView);
-		 TextView textView1 = (TextView) findViewById(R.id.timer);
+
 		myView.setActivity(this);
 
 		//listener of our pacman
@@ -45,8 +47,8 @@ public class MainActivity extends Activity {
 				myView.moveRight(10);
 
 
-				if (v.getId() == R.id.startButton) {
-					running = true;
+				/*if (v.getId() == R.id.startButton) {
+					myView.newGame = true;
 				} else if (v.getId() == R.id.stopButton) {
 					running = false;
 				} else if (v.getId() == R.id.resetButton) {
@@ -55,38 +57,47 @@ public class MainActivity extends Activity {
 
 				}
 			}
-		});
+		})
+*/
+
+				buttonleft.setOnClickListener(new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						myView.moveLeft(10);
+					}
+				});
+
+				buttonstartspil.setOnClickListener(new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						myView.newGame = true;
+					}
+				});
 
 
-		buttonleft.setOnClickListener(new OnClickListener() {
+				buttonup.setOnClickListener(new OnClickListener() {
 
-			@Override
-			public void onClick(View v) {
-				myView.moveLeft(10);
+					@Override
+					public void onClick(View v) {
+						myView.moveUp(10);
+					}
+				});
+
+
+				buttondown.setOnClickListener(new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						myView.moveDown(10);
+					}
+				});
+
+
 			}
 		});
-
-
-		buttonup.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				myView.moveUp(10);
-			}
-		});
-
-
-		buttondown.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				myView.moveDown(10);
-			}
-		});
-
-
-
-	}
+	};
 
 
 
@@ -123,7 +134,7 @@ public class MainActivity extends Activity {
 			countcoins--;
 		}
 
-		if(countcoins < 1 ){
+		if(countcoins < 11){
 
 			myView.level++;
 		}
@@ -133,12 +144,16 @@ public class MainActivity extends Activity {
 
 public void hitgohst(Ghost gost)
 {
+	TextView textView1 = (TextView) findViewById(R.id.timer);
+	if(gost.getdead() == false)
+	{
+		ti--;
 
+		textView1.setText("timer" + ti + "");
 
+	}
 
 }
 
 
 }
-
-
