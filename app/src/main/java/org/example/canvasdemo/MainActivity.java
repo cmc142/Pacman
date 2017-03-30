@@ -12,7 +12,7 @@ import android.widget.TextView;
 public class MainActivity extends Activity {
 
 	MyView myView;
-	int points = 0;
+	int po = 0;
 
 
 
@@ -32,7 +32,7 @@ public class MainActivity extends Activity {
 		Button buttondown = (Button) findViewById(R.id.movedownButton);
 		myView = (MyView) findViewById(R.id.myView);
 		 TextView textView1 = (TextView) findViewById(R.id.timer);
-
+		myView.setActivity(this);
 
 		//listener of our pacman
 		button.setOnClickListener(new OnClickListener() {
@@ -113,12 +113,30 @@ public class MainActivity extends Activity {
 
 	public void updatepoint(GoldCoin goldCoin){
 
+		int countcoins = 10;
 		TextView textView2 = (TextView) findViewById(R.id.points);
-		if(goldCoin.getTakken())
+		if(goldCoin.getTakken() == false)
 		{
-			textView2.setText(points + 1);
+			po++;
+
+			textView2.setText("points" + po + "");
+			countcoins--;
 		}
+
+		if(countcoins < 1 ){
+
+			myView.level++;
+		}
+
 	}
+
+
+public void hitgohst(Ghost gost)
+{
+
+
+
+}
 
 
 }

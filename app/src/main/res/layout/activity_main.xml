@@ -96,9 +96,10 @@
             android:id="@+id/timer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="-16dp"
             android:layout_marginLeft="200dp"
-            android:text="@string/points" />
+            android:layout_marginTop="-16dp"
+            android:text="@string/timer"
+            tools:text="timer" />
 
         <org.example.canvasdemo.MyView
             android:id="@+id/myView"

@@ -13,6 +13,7 @@ public class Ghost  {
     public int getX() { return x;}
     public int getY() {return y;}
     public boolean getdead() {return dead;}
+    public void setdead(boolean notalive) {dead = notalive;}
 
     public Ghost(int x,int y)
     {
