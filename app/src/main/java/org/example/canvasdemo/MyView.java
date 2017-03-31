@@ -261,8 +261,9 @@ public class MyView extends View {
                 gost.setdead(true);
 
             }
-
+            activity.updateghost(gost);
         }
+
 
     }
 

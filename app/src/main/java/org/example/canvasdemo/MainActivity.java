@@ -23,7 +23,7 @@ public class MainActivity extends Activity{
 
 	MyView myView;
 	int po = 0;
-	int countdown = 120;
+	int countdown = 200;
 	boolean pause = false;
 	boolean stop = false;
 	public int counter = 3;
@@ -37,10 +37,12 @@ public class MainActivity extends Activity{
 	private Timer ghostTimer;
 	private static final String TAG = "com.example.StateChange" ;
 	private String savepoints= "";
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		Log.d(TAG, "onCreate");
 		final Button button = (Button) findViewById(R.id.moveButton);
 		final Button buttonright = (Button) findViewById(R.id.moverightButton);
 		final Button buttonleft = (Button) findViewById(R.id.moveleftButton);
@@ -223,11 +225,22 @@ public class MainActivity extends Activity{
 	}
 	}
 
+	@Override
+	protected void onStart() {
+		super.onStart();
+		Log.d(TAG, "onStart");
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		Log.d(TAG, "onResume");
+	}
 
 	@Override
 	protected void onStop() {
 		super.onStop();
-		//just to make sure if the app is killed, that we stop the timer.
+		Log.d(TAG, "onPause");
 		gameTimer.cancel();
 		pacmanTimer.cancel();
 		ghostTimer.cancel();
@@ -238,6 +251,50 @@ public class MainActivity extends Activity{
 		Toast toast = Toast.makeText(context, text, duration);
 		toast.show();
 	}
+
+
+	@Override
+	protected void onRestart() {
+		super.onRestart();
+		Log.d(TAG, "onRestart");
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		Log.d(TAG, "onDestroy");
+	}
+
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		//ALWAYS CALL THE SUPER METHOD - To be nice!
+		super.onSaveInstanceState(outState);
+		Log.d(TAG, "onSaveInstanceState");
+		/* Here we put code now to save the state */
+		outState.putString("point", savepoints);
+
+	}
+	//this is called when our activity is recreated, but
+	//AFTER our onCreate method has been called
+	//EXTREMELY IMPORTANT DETAIL
+	@Override
+	protected void onRestoreInstanceState(Bundle savedState) {
+		//MOST UI elements will automatically store the information
+		//if we call the super.onRestoreInstaceState
+		//but other data will be lost.
+		super.onRestoreInstanceState(savedState);
+		Log.d(TAG, "onRestoreInstanceState");
+		/*Here we restore any state */
+		TextView savedpoint = (TextView) findViewById(R.id.points);
+		//in the line below, notice key value matches the key from onSaved
+		//this is of course EXTREMELY IMPORTANT
+		this.savepoints = savedState.getString("savedpoint");
+
+
+		savedpoint.setText("point:" + po);
+
+	}
+
 
 	private void TimerMethod()
 	{
@@ -286,6 +343,8 @@ public class MainActivity extends Activity{
 					right = false;
 				}
 
+
+
 				if(countdown <= 0)
 				{
 					onStop();
@@ -320,7 +379,7 @@ public class MainActivity extends Activity{
 
 	public void updatepoint(GoldCoin goldCoin){
 
-		int countcoins = 10;
+		int countcoins = 0;
 		TextView textView2 = (TextView) findViewById(R.id.points);
 
 		if(goldCoin.getTakken() == false)
@@ -328,14 +387,16 @@ public class MainActivity extends Activity{
 			po++;
 
 			textView2.setText("points" + po + "");
-			countcoins--;
+			countcoins++;
+
 
 		}
 
-		if(countcoins < 11){
+		if(countcoins <= 2){
 
-			countdown = 120;
+
 			myView.level++;
+			countdown = 200;
 
 		}
 
@@ -372,12 +433,9 @@ public class MainActivity extends Activity{
 	}
 
 
-	public void updateghost(Ghost ghost){
-		if (running) {
+	public void updateghost(Ghost ghost) {
 
-			ghost.getX();
-			ghost.getY();
-		}
+
 	}
 }
 
