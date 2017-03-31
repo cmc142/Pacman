@@ -137,17 +137,17 @@ public class MyView extends View {
             coins = new ArrayList<>();
             ghostst = new ArrayList<>();
             for (int i = 0; i <= 10; i++) {
-                int coinx = rand.nextInt(w - pacy);
-                int coiny = rand.nextInt(h - pacx);
+                int coinx = rand.nextInt(w - 55);
+                int coiny = rand.nextInt(h - 58);
                 GoldCoin newCoin = new GoldCoin(coinx, coiny);
                 coins.add(newCoin);
 
             }
 
 
-                for (int a = 1; a <= 2;) {
-                    int gosx = rand.nextInt(w - pacy);
-                    int gosy = rand.nextInt(h - pacx);
+                for (int a = 1; a <= 5;) {
+                    int gosx = rand.nextInt(w - 55);
+                    int gosy = rand.nextInt(h - 58);
                     Ghost newGost = new Ghost(gosx, gosy);
                     ghostst.add(newGost);
 
