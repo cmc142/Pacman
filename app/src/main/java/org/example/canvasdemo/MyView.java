@@ -29,7 +29,6 @@ public class MyView extends View {
     Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.pacman);
     Bitmap coin = BitmapFactory.decodeResource(getResources(), R.drawable.goldcoin);
     Bitmap ghost = BitmapFactory.decodeResource(getResources(), R.drawable.ghost);
-    //The coordinates for our dear pacman: (0,0) is the top-left corner
     int pacx = 50;
     int pacy = 400;
     int h, w; //used for storing our height and width
@@ -89,21 +88,19 @@ public class MyView extends View {
     }
 
 
-    public void reset()
+/*    public void reset()
     {
         int pacx = 50;
         int pacy = 400;
         newGame = true;
         invalidate();
-    }
+    }*/
 
 
     //In the onDraw we put all our code that should be
     //drawn whenever we update the screen.
     @Override
     protected void onDraw(Canvas canvas) {
-
-
 
 
         //Here we get the height and weight
@@ -121,10 +118,25 @@ public class MyView extends View {
 
         if (newGame) {
             newGame = false;
+
+
+
+            if(level >= 2){
+
+                activity.counter = 2;
+                activity.updatelife();
+            }
+
+            if(level >= 3){
+
+                activity.counter = 1;
+                activity.updatelife();
+            }
+
             Random rand = new Random(System.currentTimeMillis());
             coins = new ArrayList<>();
             ghostst = new ArrayList<>();
-            for (int i = 1; i <= 10; i++) {
+            for (int i = 0; i <= 10; i++) {
                 int coinx = rand.nextInt(w - 52);
                 int coiny = rand.nextInt(h - 51);
                 GoldCoin newCoin = new GoldCoin(coinx, coiny);
@@ -132,51 +144,54 @@ public class MyView extends View {
 
             }
 
-            for (int a = 1; a <= 2; a++) {
-                int gosx = rand.nextInt(w - 52);
-                int gosy = rand.nextInt(h - 51);
-                Ghost newGost = new Ghost(gosx, gosy);
-                ghostst.add(newGost);
+
+                for (int a = 1; a <= 2;) {
+                    int gosx = rand.nextInt(w - 52);
+                    int gosy = rand.nextInt(h - 51);
+                    Ghost newGost = new Ghost(gosx, gosy);
+                    ghostst.add(newGost);
+
+                        a++;
+
+                }
+
+
+
+            } //end of newgame
+
+
+            for (Ghost gost : ghostst) {
+
+                ghostinfo(gost);
+
+                 if (level > 0) {
+                         if (!gost.getdead()) {
+                             canvas.drawBitmap(ghost, gost.getX(), gost.getY(), paint);
+                         }
+
+                 }
+
 
             }
-
-
-
-
-
-        } //end of newgame
-
-
-        for (Ghost gost : ghostst) {
-
-            ghostinfo(gost);
-
-            // if (level > 0) {
-            if (!gost.getdead()) {
-                canvas.drawBitmap(ghost, gost.getX(), gost.getY(), paint);
-            }
-            // }
-        }
 
             for (GoldCoin goldCoin : coins) {
 
-            goldtakken(goldCoin);
+                goldtakken(goldCoin);
 
 
-            if (!goldCoin.getTakken()) {
-                canvas.drawBitmap(coin, goldCoin.getX(), goldCoin.getY(), paint);
+                if (!goldCoin.getTakken()) {
+                    canvas.drawBitmap(coin, goldCoin.getX(), goldCoin.getY(), paint);
+                }
+
+
             }
-
-
-        }
-
-
 
 
             super.onDraw(canvas);
 
 
-    }
+        }
+
 
     public void goldtakken(GoldCoin goldCoins) {
 
@@ -251,6 +266,19 @@ public class MyView extends View {
 
     }
 
+/*    public void Levelup(Ghost ghost){
+
+        Random rand = new Random(System.currentTimeMillis());
+
+        for (int a = 0; a <= level; a++) {
+            int gosx = rand.nextInt(w - 52);
+            int gosy = rand.nextInt(h - 51);
+            Ghost newGost = new Ghost(gosx, gosy);
+            ghostst.add(newGost);
+        }
+
+    }
+*/
 
 
 }

@@ -1,5 +1,9 @@
 [
     {
+        "merged": "C:\\Users\\user\\AndroidStudioProjects\\CanvasDemo\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_mainhorizontal.xml",
+        "source": "C:\\Users\\user\\AndroidStudioProjects\\CanvasDemo\\app\\src\\main\\res\\layout\\activity_mainhorizontal.xml"
+    },
+    {
         "merged": "C:\\Users\\user\\AndroidStudioProjects\\CanvasDemo\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_main.xml",
         "source": "C:\\Users\\user\\AndroidStudioProjects\\CanvasDemo\\app\\src\\main\\res\\layout\\activity_main.xml"
     },
