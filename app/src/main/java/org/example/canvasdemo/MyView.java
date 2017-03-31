@@ -64,7 +64,7 @@ public class MyView extends View {
 
     public void moveDown(int y) {
         //still within our boundaries?
-        if (pacy + y + bitmap.getWidth() <= h - pacy + 900)
+        if (pacy + y + bitmap.getWidth() <= h - pacy + 950)
             pacy = pacy + y;
         invalidate(); //redraw everything - this ensures onDraw() is called.
     }
@@ -137,8 +137,8 @@ public class MyView extends View {
             coins = new ArrayList<>();
             ghostst = new ArrayList<>();
             for (int i = 0; i <= 10; i++) {
-                int coinx = rand.nextInt(w - 52);
-                int coiny = rand.nextInt(h - 51);
+                int coinx = rand.nextInt(w - pacy);
+                int coiny = rand.nextInt(h - pacx);
                 GoldCoin newCoin = new GoldCoin(coinx, coiny);
                 coins.add(newCoin);
 
@@ -146,8 +146,8 @@ public class MyView extends View {
 
 
                 for (int a = 1; a <= 2;) {
-                    int gosx = rand.nextInt(w - 52);
-                    int gosy = rand.nextInt(h - 51);
+                    int gosx = rand.nextInt(w - pacy);
+                    int gosy = rand.nextInt(h - pacx);
                     Ghost newGost = new Ghost(gosx, gosy);
                     ghostst.add(newGost);
 

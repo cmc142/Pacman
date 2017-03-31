@@ -82,32 +82,37 @@
     a full package path-->
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-        <TextView
+        <EditText
             android:id="@+id/points"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/points" />
 
-        <TextView
-            android:id="@+id/life"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
-            android:layout_marginTop="-16dp"
-            android:text="life: 3" />
-
-        <TextView
+        <EditText
             android:id="@+id/timer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="160dp"
-            android:layout_marginTop="-16dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="1dp"
             android:text="time: 60" />
 
+        <EditText
+            android:id="@+id/life"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="1dp"
+            android:text="life: 3" />
+
+        </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
         <org.example.canvasdemo.MyView
             android:id="@+id/myView"
             android:layout_width="match_parent"

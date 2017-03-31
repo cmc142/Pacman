@@ -9,10 +9,52 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:weightSum="1"
         tools:context="org.example.canvasdemo.MainActivity">
 
+
+        <org.example.canvasdemo.MyView
+            android:id="@+id/myView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </org.example.canvasdemo.MyView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="1"
+            tools:context="org.example.canvasdemo.MainActivity">
+
+            <TextView
+                android:id="@+id/points"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/points" />
+
+            <TextView
+                android:id="@+id/life"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1dp"
+                android:layout_marginTop="1dp"
+                android:text="life: 3" />
+
+            <TextView
+                android:id="@+id/timer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1dp"
+                android:layout_marginTop="-1dp"
+                android:text="time: 60" />
+
+
+            <!-- Notice how the custom view is referenced here with
+    a full package path-->
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/startButton"
@@ -67,45 +109,4 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:weightSum="1"
-        tools:context="org.example.canvasdemo.MainActivity">
-    <TextView
-            android:id="@+id/points"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/points" />
-
-        <TextView
-            android:id="@+id/life"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="-16dp"
-            android:text="life: 3" />
-
-        <TextView
-            android:id="@+id/timer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="160dp"
-            android:layout_marginTop="-16dp"
-            android:text="time: 60" />
-
-
-        <org.example.canvasdemo.MyView
-            android:id="@+id/myView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        </org.example.canvasdemo.MyView>
-
-
-    <!-- Notice how the custom view is referenced here with
-    a full package path-->
-
-</LinearLayout>
 </LinearLayout>

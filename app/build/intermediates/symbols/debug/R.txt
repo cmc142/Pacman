@@ -5,7 +5,7 @@ int drawable goldcoin 0x7f020001
 int drawable ic_launcher 0x7f020002
 int drawable pacman 0x7f020003
 int id action_settings 0x7f08000c
-int id life 0x7f080008
+int id life 0x7f080009
 int id moveButton 0x7f080003
 int id movedownButton 0x7f080006
 int id moveleftButton 0x7f080004
@@ -16,7 +16,7 @@ int id pauseButton 0x7f080002
 int id points 0x7f080007
 int id startButton 0x7f080000
 int id stopButton 0x7f080001
-int id timer 0x7f080009
+int id timer 0x7f080008
 int layout activity_main 0x7f030000
 int layout activity_mainhorizontal 0x7f030001
 int menu main 0x7f070000

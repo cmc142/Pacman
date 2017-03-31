@@ -8,6 +8,16 @@ package org.example.canvasdemo;
 public class Ghost  {
 
     private int x,y;
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    private int speed;
     private boolean dead = false;
 
     public int getX() { return x;}

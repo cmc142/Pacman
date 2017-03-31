@@ -22,7 +22,7 @@ public final class R {
     }
     public static final class id {
         public static final int action_settings=0x7f08000c;
-        public static final int life=0x7f080008;
+        public static final int life=0x7f080009;
         public static final int moveButton=0x7f080003;
         public static final int movedownButton=0x7f080006;
         public static final int moveleftButton=0x7f080004;
@@ -33,7 +33,7 @@ public final class R {
         public static final int points=0x7f080007;
         public static final int startButton=0x7f080000;
         public static final int stopButton=0x7f080001;
-        public static final int timer=0x7f080009;
+        public static final int timer=0x7f080008;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;

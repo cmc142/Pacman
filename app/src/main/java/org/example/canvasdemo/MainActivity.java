@@ -4,6 +4,7 @@ package org.example.canvasdemo;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -11,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,13 +38,14 @@ public class MainActivity extends Activity{
 	private Timer pacmanTimer;
 	private Timer ghostTimer;
 	private static final String TAG = "com.example.StateChange" ;
-	private String savepoints= "";
+	//TextView textView2 = (TextView) findViewById(R.id.points);
+
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		Log.d(TAG, "onCreate");
 		final Button button = (Button) findViewById(R.id.moveButton);
 		final Button buttonright = (Button) findViewById(R.id.moverightButton);
 		final Button buttonleft = (Button) findViewById(R.id.moveleftButton);
@@ -57,6 +60,7 @@ public class MainActivity extends Activity{
 		gameTimer = new Timer();
 		pacmanTimer = new Timer();
 		ghostTimer = new Timer();
+		//savedInstanceState.putString("point", savepoints);
 
 		//listener of our pacman
 
@@ -65,10 +69,11 @@ public class MainActivity extends Activity{
 
 			@Override
 			public void onClick(View v) {
-				myView.moveRight(10);
-				myView.moveUp(10);
-				myView.moveDown(10);
-				myView.moveRight(10);
+				up = false;
+				down = false;
+				right = true;
+				left = false;
+
 				/*if (v.getId() == R.id.startButton) {
 					myView.newGame = true;
 				} else if (v.getId() == R.id.stopButton) {
@@ -84,6 +89,8 @@ public class MainActivity extends Activity{
 
 */
 
+
+
 				buttonstartspil.setOnClickListener(new OnClickListener() {
 
 					@Override
@@ -98,7 +105,11 @@ public class MainActivity extends Activity{
 
 							Toast toast = Toast.makeText(context, text, duration);
 							toast.show();
-							running = true;}
+							running = true;
+							gameTimer.purge();
+							pacmanTimer.purge();
+							ghostTimer.purge();
+							}
 
 						if(stop == true) {
 
@@ -109,10 +120,16 @@ public class MainActivity extends Activity{
 							Toast toast = Toast.makeText(context, text, duration);
 							toast.show();
 
+
 							Intent i = getBaseContext().getPackageManager()
 									.getLaunchIntentForPackage( getBaseContext().getPackageName() );
 							i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 							startActivity(i);
+							myView.newGame = true;
+							//gameTimer.purge();
+							//pacmanTimer.purge();
+							//ghostTimer.purge();
+
 
 
 
@@ -128,7 +145,7 @@ public class MainActivity extends Activity{
 					public void onClick(View v) {
 
 						stop = true;
-						onStop();
+						onDestroy();
 					}
 				});
 
@@ -225,10 +242,26 @@ public class MainActivity extends Activity{
 	}
 	}
 
-	@Override
+		@Override
+		protected void onSaveInstanceState(Bundle outState) {
+
+			super.onSaveInstanceState(outState);
+
+			outState.putInt("points", po);
+			Log.d("point",po + "was saved");
+			Log.d("coin", myView.coins + "was saved");
+		}
+
+
+
+
+
+
+		@Override
 	protected void onStart() {
 		super.onStart();
 		Log.d(TAG, "onStart");
+			myView.newGame = true;
 	}
 
 	@Override
@@ -240,16 +273,8 @@ public class MainActivity extends Activity{
 	@Override
 	protected void onStop() {
 		super.onStop();
-		Log.d(TAG, "onPause");
-		gameTimer.cancel();
-		pacmanTimer.cancel();
-		ghostTimer.cancel();
-		Context context = getApplicationContext();
-		CharSequence text = "slutter spillet";
-		int duration = Toast.LENGTH_SHORT;
+		Log.d(TAG, "onStop");
 
-		Toast toast = Toast.makeText(context, text, duration);
-		toast.show();
 	}
 
 
@@ -263,37 +288,17 @@ public class MainActivity extends Activity{
 	protected void onDestroy() {
 		super.onDestroy();
 		Log.d(TAG, "onDestroy");
+		gameTimer.cancel();
+		pacmanTimer.cancel();
+		ghostTimer.cancel();
+		Context context = getApplicationContext();
+		CharSequence text = "slutter spillet";
+		int duration = Toast.LENGTH_SHORT;
+
+		Toast toast = Toast.makeText(context, text, duration);
+		toast.show();
 	}
 
-	@Override
-	protected void onSaveInstanceState(Bundle outState) {
-		//ALWAYS CALL THE SUPER METHOD - To be nice!
-		super.onSaveInstanceState(outState);
-		Log.d(TAG, "onSaveInstanceState");
-		/* Here we put code now to save the state */
-		outState.putString("point", savepoints);
-
-	}
-	//this is called when our activity is recreated, but
-	//AFTER our onCreate method has been called
-	//EXTREMELY IMPORTANT DETAIL
-	@Override
-	protected void onRestoreInstanceState(Bundle savedState) {
-		//MOST UI elements will automatically store the information
-		//if we call the super.onRestoreInstaceState
-		//but other data will be lost.
-		super.onRestoreInstanceState(savedState);
-		Log.d(TAG, "onRestoreInstanceState");
-		/*Here we restore any state */
-		TextView savedpoint = (TextView) findViewById(R.id.points);
-		//in the line below, notice key value matches the key from onSaved
-		//this is of course EXTREMELY IMPORTANT
-		this.savepoints = savedState.getString("savedpoint");
-
-
-		savedpoint.setText("point:" + po);
-
-	}
 
 
 	private void TimerMethod()
@@ -347,7 +352,7 @@ public class MainActivity extends Activity{
 
 				if(countdown <= 0)
 				{
-					onStop();
+					onDestroy();
 				}
 
 				countdown--;
@@ -392,7 +397,7 @@ public class MainActivity extends Activity{
 
 		}
 
-		if(countcoins <= 2){
+		if(countcoins <= 10){
 
 
 			myView.level++;
@@ -413,7 +418,7 @@ public class MainActivity extends Activity{
 
 		if(counter <= 0){
 			updatelife();
-			onStop();
+			onDestroy();
 			running = false;
 			Context context = getApplicationContext();
 			CharSequence text = "du døde dit liv kom ned på 0";
@@ -433,8 +438,21 @@ public class MainActivity extends Activity{
 	}
 
 
-	public void updateghost(Ghost ghost) {
+	public void updateghost(Ghost gst) {
+		gst.setSpeed(10);
+		Random gstmove = new Random(gst.getSpeed());
+		gstmove.nextInt(gst.getX());
+		gstmove.nextInt(gst.getY());
 
+
+	}
+
+	@Override
+	protected void onRestoreInstanceState(Bundle savedState) {
+
+		super.onRestoreInstanceState(savedState);
+		savedState.getInt("points");
+		savedState.getInt("coin");
 
 	}
 }
