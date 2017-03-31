@@ -2,6 +2,7 @@ package org.example.canvasdemo;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 import java.util.Timer;
@@ -21,6 +23,7 @@ public class MainActivity extends Activity{
 
 	MyView myView;
 	int po = 0;
+	int countdown = 120;
 	boolean pause = false;
 	boolean stop = false;
 	public int counter = 3;
@@ -52,7 +55,7 @@ public class MainActivity extends Activity{
 		gameTimer = new Timer();
 		pacmanTimer = new Timer();
 		ghostTimer = new Timer();
-		running = true;
+
 		//listener of our pacman
 
 
@@ -83,11 +86,26 @@ public class MainActivity extends Activity{
 
 					@Override
 					public void onClick(View v) {
+						running = true;
 
+						if(pause == true){
 
-						if(pause == true){running = true;}
+							Context context = getApplicationContext();
+							CharSequence text = "forsætter";
+							int duration = Toast.LENGTH_SHORT;
+
+							Toast toast = Toast.makeText(context, text, duration);
+							toast.show();
+							running = true;}
 
 						if(stop == true) {
+
+							Context context = getApplicationContext();
+							CharSequence text = "nytspil";
+							int duration = Toast.LENGTH_SHORT;
+
+							Toast toast = Toast.makeText(context, text, duration);
+							toast.show();
 
 							Intent i = getBaseContext().getPackageManager()
 									.getLaunchIntentForPackage( getBaseContext().getPackageName() );
@@ -106,6 +124,7 @@ public class MainActivity extends Activity{
 
 					@Override
 					public void onClick(View v) {
+
 						stop = true;
 						onStop();
 					}
@@ -115,6 +134,12 @@ public class MainActivity extends Activity{
 
 					@Override
 					public void onClick(View v) {
+						Context context = getApplicationContext();
+						CharSequence text = "pause";
+						int duration = Toast.LENGTH_SHORT;
+
+						Toast toast = Toast.makeText(context, text, duration);
+						toast.show();
 						if(running = true) {
 							running = false;
 							pause = true;
@@ -180,18 +205,22 @@ public class MainActivity extends Activity{
 			}
 		});
 
+		if (running = true) {
 		gameTimer = new Timer();
-		running = true; //should the game be running?
-		//We will call the timer 5 times each second
+
 		gameTimer.schedule(new TimerTask() {
 			@Override
 			public void run() {
-				TimerMethod();
+
+
+					TimerMethod();
+
 
 			}
 
 		}, 0, 200); //0 indicates we start now, 200
 		//is the number of miliseconds between each call
+	}
 	}
 
 
@@ -202,6 +231,12 @@ public class MainActivity extends Activity{
 		gameTimer.cancel();
 		pacmanTimer.cancel();
 		ghostTimer.cancel();
+		Context context = getApplicationContext();
+		CharSequence text = "slutter spillet";
+		int duration = Toast.LENGTH_SHORT;
+
+		Toast toast = Toast.makeText(context, text, duration);
+		toast.show();
 	}
 
 	private void TimerMethod()
@@ -215,8 +250,13 @@ public class MainActivity extends Activity{
 		public void run() {
 
 
+
 			if (running)
 			{
+				TextView textView3 = (TextView) findViewById(R.id.timer);
+				textView3.setText("tid" + countdown + "");
+
+
 			//	updat(); tiden vikker ikke
 				if(right == true) {
 					myView.moveRight(20);
@@ -246,10 +286,12 @@ public class MainActivity extends Activity{
 					right = false;
 				}
 
-				/*for(ghostTimer){
-					myView.ghostinfo();
+				if(countdown <= 0)
+				{
+					onStop();
+				}
 
-				}*/
+				countdown--;
 				}
 			}
 
@@ -292,6 +334,7 @@ public class MainActivity extends Activity{
 
 		if(countcoins < 11){
 
+			countdown = 120;
 			myView.level++;
 
 		}
@@ -311,6 +354,12 @@ public class MainActivity extends Activity{
 			updatelife();
 			onStop();
 			running = false;
+			Context context = getApplicationContext();
+			CharSequence text = "du døde dit liv kom ned på 0";
+			int duration = Toast.LENGTH_SHORT;
+
+			Toast toast = Toast.makeText(context, text, duration);
+			toast.show();
 		}
 	}
 	}
@@ -322,6 +371,14 @@ public class MainActivity extends Activity{
 
 	}
 
+
+	public void updateghost(Ghost ghost){
+		if (running) {
+
+			ghost.getX();
+			ghost.getY();
+		}
+	}
 }
 
 
